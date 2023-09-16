@@ -1,12 +1,16 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:user_voting_app/core/constants/app_colors.dart';
 import 'package:user_voting_app/core/constants/app_text_style.dart';
 import 'package:user_voting_app/core/image_loader.dart';
 import 'package:user_voting_app/core/universal_widgets/custom_text_field_with_label.dart';
 import 'package:user_voting_app/core/user_location.dart';
+import 'package:user_voting_app/feature/auth/controller/login_controller.dart';
+import 'package:user_voting_app/feature/auth/repository/auth_repository.dart';
 
 import '../../../core/reponsive/SizeConfig.dart';
 
@@ -18,8 +22,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final LoginController _loginController =
+      Get.put(LoginController(AuthRepository(Dio())));
+  bool showTick = false;
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -76,14 +81,23 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 20 * SizeConfig.heightMultiplier!,
                       ),
                       CustomTextFieldWithLabel(
-                        controller: nameController,
+                        controller: _loginController.voterIdController,
                         title: 'Enter you Voter ID',
                         dynamicKeyboardText: 'GDN0453323',
                         hint: 'GDN0453323',
+                        onChanged: (value) {
+                          final isValid = _voteIdValidation(value);
+
+                          setState(() {
+                            showTick = isValid;
+                          });
+                        },
                         inputFormatters: [LengthLimitingTextInputFormatter(10)],
-                        suffix: Padding(
-                            padding: EdgeInsets.only(right: 10),
-                            child: Icon(Icons.check_circle)),
+                        suffix: showTick
+                            ? Padding(
+                                padding: EdgeInsets.only(right: 10),
+                                child: Icon(Icons.check_circle))
+                            : null,
                       ),
                       SizedBox(
                         height: 16.heightMultiplier,
@@ -91,20 +105,25 @@ class _LoginScreenState extends State<LoginScreen> {
                       GestureDetector(
                         onTap: () {
                           if (UserLocation().userAuthorisedToVote.value ==
-                              false) {
+                              true) {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                     content:
                                         Text("You are not eligible to vote!")));
                           } else {
                             //todo call login api
+                            _loginController.sendOtp(
+                              context,
+                            );
                           }
                         },
                         child: Container(
                           width: double.infinity,
                           height: 56 * SizeConfig.heightMultiplier!,
                           decoration: ShapeDecoration(
-                            color: Color(0xFF128807),
+                            color: showTick
+                                ? Color(0xFF128807)
+                                : AppColors.neutral06,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
                           ),
@@ -216,5 +235,13 @@ class _LoginScreenState extends State<LoginScreen> {
     }).catchError((e) {
       debugPrint(e);
     });
+  }
+
+  bool _voteIdValidation(String id) {
+    return true;
+    final RegExp pattern = RegExp(r'^[A-Z]{3}\d+$');
+
+    // Use the RegExp pattern to match the input
+    return pattern.hasMatch(id) && id.length == 10;
   }
 }
