@@ -28,19 +28,20 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  awesome_dialog: ^3.1.0
   cupertino_icons: ^1.0.2
   dio: ^5.3.2
   flutter:
     sdk: flutter
   flutter_screenutil: ^5.9.0
+  flutter_svg: null
   get: ^4.6.5
   google_fonts: ^6.0.0
   internet_connection_checker: ^1.0.0+1
   intl: ^0.18.1
   logger: ^2.0.2
+  lottie: ^2.6.0
   url_launcher: ^6.1.14
-  flutter_svg:
-  lottie:
   pinput:
   firebase_analytics: ^10.4.5
   geolocator: ^8.2.0
@@ -62,7 +63,11 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/images/
+    - assets/lottie/
     - assets/
+  #   - images/a_dot_ham.jpeg
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
