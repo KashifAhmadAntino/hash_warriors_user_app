@@ -22,7 +22,7 @@ class GenerateRoute {
         builder: (
           BuildContext context,
         ) =>
-            const LoginScreen(),
+            const VotingScreen(),
       );
     } else if (route == RouteName.voteScreen) {
       return MaterialPageRoute(

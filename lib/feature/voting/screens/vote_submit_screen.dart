@@ -1,12 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:user_voting_app/core/constants/app_colors.dart';
 import 'package:user_voting_app/core/constants/app_text_style.dart';
 import 'package:user_voting_app/core/reponsive/SizeConfig.dart';
 import 'package:user_voting_app/core/routes/app_routes.dart';
+import 'package:user_voting_app/feature/voting/controller/voting_controller.dart';
 import 'package:user_voting_app/feature/voting/screens/voting_screen.dart';
 
 class VoteSubmitScreen extends StatefulWidget {
@@ -23,6 +25,7 @@ class _VoteSubmitScreenState extends State<VoteSubmitScreen>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late AnimationController _celebrateAnimationController;
+  final VotingController _votingController = Get.find();
   bool isDropped = false;
   @override
   void initState() {
@@ -81,6 +84,7 @@ class _VoteSubmitScreenState extends State<VoteSubmitScreen>
               return data != AppColors.greyScale400;
             },
             onAccept: (data) {
+              _votingController.getCandidates();
               setState(() {
                 isDropped = true;
               });
