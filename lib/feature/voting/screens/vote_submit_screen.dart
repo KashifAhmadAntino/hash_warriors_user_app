@@ -53,7 +53,7 @@ class _VoteSubmitScreenState extends State<VoteSubmitScreen>
             onDragUpdate: (data) {
               if (data.localPosition.dy >= 466 * SizeConfig.heightMultiplier! &&
                   isDropped == false) {
-                _votingController.getCandidates();
+                _votingController.submitVote(widget.parms.candidate);
                 setState(() {
                   isDropped = true;
                 });
@@ -65,10 +65,8 @@ class _VoteSubmitScreenState extends State<VoteSubmitScreen>
                         animType: AnimType.rightSlide,
                         title: 'Vote Submitted Successefully',
                         btnOkOnPress: () {
-                          Navigator.popUntil(
-                              context,
-                              (route) =>
-                                  RouteName.loginScreen == route.settings.name);
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, RouteName.loginScreen, (route) => false);
                         },
                         padding: EdgeInsets.all(12),
                         headerAnimationLoop: false)
@@ -111,7 +109,7 @@ class _VoteSubmitScreenState extends State<VoteSubmitScreen>
               return data != AppColors.greyScale400;
             },
             onAccept: (data) {
-              _votingController.getCandidates();
+              _votingController.submitVote(widget.parms.candidate);
               setState(() {
                 isDropped = true;
               });
@@ -124,16 +122,12 @@ class _VoteSubmitScreenState extends State<VoteSubmitScreen>
                   animType: AnimType.rightSlide,
                   title: 'Vote Submitted Successefully',
                   onDismissCallback: (sf) {
-                    Navigator.popUntil(
-                        context,
-                        (route) =>
-                            RouteName.loginScreen == route.settings.name);
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, RouteName.loginScreen, (route) => false);
                   },
                   btnOkOnPress: () {
-                    Navigator.popUntil(
-                        context,
-                        (route) =>
-                            RouteName.loginScreen == route.settings.name);
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, RouteName.loginScreen, (route) => false);
                   },
                   padding: EdgeInsets.all(12),
                   headerAnimationLoop: false)
@@ -174,7 +168,7 @@ class _VoteSubmitScreenState extends State<VoteSubmitScreen>
                   CircleAvatar(
                     radius: 20,
                     foregroundImage:
-                        NetworkImage(widget.parms.candidate.imageUrl),
+                        NetworkImage(widget.parms.candidate.imageUrl ?? ''),
                   )
                 ]),
         ),

@@ -73,19 +73,19 @@ class _VotingScreenState extends State<VotingScreen> {
                             selected: index == selectedCandidateIndex,
                             contentPadding: EdgeInsets.zero,
                             title: Text(
-                              candidates[index].name,
+                              candidates[index].name ?? '',
                               style: AppTextStyle.f18w500RooberBlackShade2,
                             ),
                             subtitle: Text(
-                              candidates[index].partyName,
+                              candidates[index].partyName ?? '',
                               style: AppTextStyle.f16w500InterNeutral08,
                             ),
                             leading: CircleAvatar(
                               radius: 32,
                               foregroundColor: AppColors.accent4,
                               child: CircleAvatar(
-                                foregroundImage:
-                                    NetworkImage(candidates[index].imageUrl),
+                                foregroundImage: NetworkImage(
+                                    candidates[index].imageUrl ?? ''),
                                 radius: 26,
                               ),
                             ),

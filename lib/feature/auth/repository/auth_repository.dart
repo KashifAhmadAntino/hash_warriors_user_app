@@ -19,7 +19,9 @@ class AuthRepository {
 
       return LoginResponse.fromMap(response.data);
     } on DioException catch (e) {
-      return LoginResponse(errorString: e.response?.data["message"]);
+      return LoginResponse(
+        errorString: e.response?.data["message"],
+      );
     } catch (e) {
       log(e.toString());
       return null;

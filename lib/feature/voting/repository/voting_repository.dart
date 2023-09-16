@@ -17,6 +17,7 @@ class VotingRepository {
       final List list = response.data['data'];
       final List<Candidate> candidates =
           list.map((e) => Candidate.fromMap(e)).toList();
+      AnalyticsHelper().logEvent('fetched_all_candidate', {});
       return candidates;
     } catch (e) {
       log(e.toString());
@@ -24,12 +25,19 @@ class VotingRepository {
     }
   }
 
-  Future<void> submitVote(Candidate candidate) async {
+  Future<void> submitVote(
+      Candidate candidate, String userId, String otp) async {
     try {
-      await _client.post(ApiUrl.vote);
-      AnalyticsHelper().logEvent('usr_voted', {
+      final body = {
+        "userId": userId,
+        "otp": otp,
+        "candidateId": candidate.candidateId,
+        "partyId": candidate.partyId
+      };
+      final response = await _client.post(ApiUrl.vote, data: body);
+      AnalyticsHelper().logEvent('user_voted', {
         'user_voted': true,
-        //todo add voter id
+        "userId": userId,
       });
     } catch (e) {
       log(e.toString());

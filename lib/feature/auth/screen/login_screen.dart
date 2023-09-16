@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:user_voting_app/core/analytics_helper.dart';
 import 'package:user_voting_app/core/constants/app_colors.dart';
 import 'package:user_voting_app/core/constants/app_text_style.dart';
 import 'package:user_voting_app/core/image_loader.dart';
@@ -29,6 +30,9 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _getCurrentPosition();
+    });
+    AnalyticsHelper().logEvent('login_open', {
+      "voter_id": _loginController.voterIdController.text.toString(),
     });
     super.initState();
   }
@@ -104,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          if (UserLocation().userAuthorisedToVote.value ==
+                          if (UserLocation().userAuthorisedToVote.value !=
                               true) {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(

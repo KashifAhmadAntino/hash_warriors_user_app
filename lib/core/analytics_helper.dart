@@ -5,12 +5,20 @@ class AnalyticsHelper {
   FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 
   void logEvent(String eventName, Map<String, dynamic>? params) async {
+    Map<String, dynamic>? temp = {};
+    params?.forEach((key, value) {
+      temp[key] = value.toString();
+    });
     params?.addAll({
-      "postalCode": UserLocation().userLocation?.postalCode,
+      "postalCode": UserLocation().userLocation?.postalCode.toString(),
       "city": UserLocation().userLocation?.administrativeArea,
       "area": UserLocation().userLocation?.name,
       "locality": UserLocation().userLocation?.locality
     });
-    await analytics.logEvent(name: '', parameters: params);
+    try {
+      await analytics.logEvent(name: '', parameters: params);
+    } catch (e) {
+      print(e);
+    }
   }
 }
