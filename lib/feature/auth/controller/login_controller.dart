@@ -20,7 +20,7 @@ class LoginController extends GetxController {
 
   Future<void> verifyOtp(BuildContext context) async {
     final otpVerified = await _authRepository.verifyOtp(
-        userId: userId, otp: voterIdController.text);
+        userId: userId, otp: int.parse(voterIdController.text));
     if (otpVerified) {
       Navigator.pushNamed(context, RouteName.voteScreen);
     } else {

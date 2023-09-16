@@ -28,7 +28,7 @@ class AuthRepository {
 
   Future<bool> verifyOtp({
     final String? userId,
-    final String? otp,
+    final int? otp,
   }) async {
     try {
       final res = await _client
