@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pinput/pinput.dart';
+import 'package:user_voting_app/core/constants/app_text_style.dart';
+import 'package:user_voting_app/core/universal_widgets/custom_pin_input_with_label.dart';
 import 'package:user_voting_app/core/universal_widgets/custom_text_field_with_label.dart';
+
+import '../../../core/reponsive/SizeConfig.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -38,19 +43,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       hint: 'GDN0453323',
                     ),
                   ),
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                    child: TextField(
-                      obscureText: true,
-                      controller: passwordController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(12.0))),
-                        labelText: 'Password',
-                      ),
-                    ),
+                  SizedBox(
+                    height: 4.heightMultiplier,
                   ),
+                  Container(
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                      child: CustomPinInputWithLabel(
+                        pinController: TextEditingController(),
+                        unfilledInputLabel: "OTP",
+                        filledInputLabel: "OTP",
+                        isPinInputCenter: true,
+                        length: 4,
+                      )),
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
@@ -58,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         //forgot password screen
                       },
                       child: const Text(
-                        'Forgot Password',
+                        'Resend',
                       ),
                     ),
                   ),

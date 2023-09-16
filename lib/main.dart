@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
                   navigatorKey: navigatorKey,
                   theme: ThemeData(
                     fontFamily: 'Mulish',
+                    primarySwatch: Colors.deepPurple,
                     // For changing color avatar background color in whole app
                     primaryColorDark: AppColors.kgrey,
                   ),

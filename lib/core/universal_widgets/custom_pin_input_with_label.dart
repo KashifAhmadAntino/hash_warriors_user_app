@@ -93,7 +93,7 @@ class _CustomPinInputWithLabelState extends State<CustomPinInputWithLabel> {
                 widget.pinController.text.length != widget.length
                     ? widget.filledInputLabel ?? ''
                     : widget.unfilledInputLabel ?? '',
-                style: AppTextStyle.f14w600InterBlackShade2,
+                style: AppTextStyle.f14w500InterNeutral06,
               ),
             ),
           ),
