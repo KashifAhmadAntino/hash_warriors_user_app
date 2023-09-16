@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "766747289497",
+    "project_id": "hash-warriors",
+    "storage_bucket": "hash-warriors.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766747289497:android:23d8e39d75db1982d95508",
+        "android_client_info": {
+          "package_name": "com.example.user_voting_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBg5-yQyveTJLqhb9uWRFVupLL2PQ_prk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

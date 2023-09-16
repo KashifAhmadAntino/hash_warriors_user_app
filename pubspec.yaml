@@ -41,8 +41,11 @@ dependencies:
   intl: ^0.18.1
   logger: ^2.0.2
   lottie: ^2.6.0
-  pinput: null
   url_launcher: ^6.1.14
+  pinput:
+  firebase_analytics: ^10.4.5
+  geolocator: ^8.2.0
+  geocoding: ^2.0.4
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -62,7 +65,9 @@ flutter:
   assets:
     - assets/images/
     - assets/lottie/
+    - assets/
   #   - images/a_dot_ham.jpeg
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
