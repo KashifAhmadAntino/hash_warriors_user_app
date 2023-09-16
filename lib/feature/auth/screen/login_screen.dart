@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_voting_app/core/universal_widgets/custom_text_field_with_label.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -30,14 +31,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       )),
                   Container(
                     padding: const EdgeInsets.all(10),
-                    child: TextField(
+                    child: CustomTextFieldWithLabel(
                       controller: nameController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(12.0))),
-                        labelText: 'User Name',
-                      ),
+                      title: 'Voter ID',
+                      dynamicKeyboardText: 'GDN0453323',
+                      hint: 'GDN0453323',
                     ),
                   ),
                   Container(

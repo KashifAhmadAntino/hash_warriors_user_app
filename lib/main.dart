@@ -34,9 +34,8 @@ class MyApp extends StatelessWidget {
                     primaryColorDark: AppColors.kgrey,
                   ),
                   onGenerateRoute: GenerateRoute.generateRoute,
-                  initialRoute: '/',
+                  initialRoute: '/login',
                   title: 'Connectivity',
-
                   debugShowCheckedModeBanner: false,
                   // home: const ReferUnlockedContinetScreen(),
                 );
