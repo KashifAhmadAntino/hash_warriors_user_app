@@ -172,7 +172,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  String? _currentAddress;
   Position? _currentPosition;
 
   Future<bool> _handleLocationPermission() async {
@@ -232,13 +231,7 @@ class _LoginScreenState extends State<LoginScreen> {
       } else {
         UserLocation().userAuthorisedToVote.value = false;
       }
-      setState(() {
-        _currentAddress =
-            '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}';
-      });
-    }).catchError((e) {
-      debugPrint(e);
-    });
+    }).catchError((e) {});
   }
 
   bool _voteIdValidation(String id) {

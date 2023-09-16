@@ -16,7 +16,7 @@ class AnalyticsHelper {
       "locality": UserLocation().userLocation?.locality ?? ''
     });
     try {
-      await analytics.logEvent(name: '', parameters: params);
+      await analytics.logEvent(name: eventName, parameters: params);
     } catch (e) {
       print(e);
     }
