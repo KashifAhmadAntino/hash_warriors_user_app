@@ -50,6 +50,31 @@ class _VoteSubmitScreenState extends State<VoteSubmitScreen>
             height: 20.heightMultiplier,
           ),
           Draggable(
+            onDragUpdate: (data) {
+              if (data.localPosition.dy >= 466 * SizeConfig.heightMultiplier! &&
+                  isDropped == false) {
+                _votingController.getCandidates();
+                setState(() {
+                  isDropped = true;
+                });
+                _celebrateAnimationController
+                    .forward()
+                    .then((_) => AwesomeDialog(
+                        context: context,
+                        dialogType: DialogType.success,
+                        animType: AnimType.rightSlide,
+                        title: 'Vote Submitted Successefully',
+                        btnOkOnPress: () {
+                          Navigator.popUntil(
+                              context,
+                              (route) =>
+                                  RouteName.loginScreen == route.settings.name);
+                        },
+                        padding: EdgeInsets.all(12),
+                        headerAnimationLoop: false)
+                      ..show());
+              }
+            },
             axis: Axis.vertical,
             data: AppColors.accent01,
             child: _buildVotingWidget(Colors.amber.withOpacity(0.4)),
@@ -78,7 +103,9 @@ class _VoteSubmitScreenState extends State<VoteSubmitScreen>
                 ],
               );
             },
-            onMove: (details) {},
+            onMove: (details) {
+              print(details.data.toString());
+            },
             onLeave: (data) {},
             onWillAccept: (data) {
               return data != AppColors.greyScale400;
@@ -89,10 +116,19 @@ class _VoteSubmitScreenState extends State<VoteSubmitScreen>
                 isDropped = true;
               });
               _celebrateAnimationController.forward().then((_) => AwesomeDialog(
+                  dismissOnTouchOutside: false,
+                  dismissOnBackKeyPress: false,
+                  autoDismiss: false,
                   context: context,
                   dialogType: DialogType.success,
                   animType: AnimType.rightSlide,
                   title: 'Vote Submitted Successefully',
+                  onDismissCallback: (sf) {
+                    Navigator.popUntil(
+                        context,
+                        (route) =>
+                            RouteName.loginScreen == route.settings.name);
+                  },
                   btnOkOnPress: () {
                     Navigator.popUntil(
                         context,

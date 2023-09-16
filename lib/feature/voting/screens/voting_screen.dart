@@ -1,3 +1,4 @@
+import 'package:auto_localization/auto_localization.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -68,7 +69,7 @@ class _VotingScreenState extends State<VotingScreen> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
                             selectedTileColor:
-                                AppColors.accent01.withOpacity(0.2),
+                                Theme.of(context).primaryColor.withOpacity(0.2),
                             selected: index == selectedCandidateIndex,
                             contentPadding: EdgeInsets.zero,
                             title: Text(

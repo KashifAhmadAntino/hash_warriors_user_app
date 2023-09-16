@@ -1,3 +1,5 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -6,9 +8,15 @@ import 'package:user_voting_app/core/reponsive/SizeConfig.dart';
 import 'package:user_voting_app/core/routes/app_routes.dart';
 import 'package:user_voting_app/core/utilites/utility.dart';
 import 'package:user_voting_app/feature/auth/screen/home_screen.dart';
+import 'package:auto_localization/auto_localization.dart';
+import 'package:user_voting_app/firebase_options.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -28,6 +36,10 @@ class MyApp extends StatelessWidget {
               builder: (BuildContext context, Orientation orientation) {
                 SizeConfig.init(constraints, orientation);
                 return GetMaterialApp(
+                  navigatorObservers: [
+                    FirebaseAnalyticsObserver(
+                        analytics: FirebaseAnalytics.instance),
+                  ],
                   navigatorKey: navigatorKey,
                   theme: ThemeData(
                     fontFamily: 'Mulish',

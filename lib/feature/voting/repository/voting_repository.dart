@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
+import 'package:user_voting_app/core/analytics_helper.dart';
 import 'package:user_voting_app/core/routes/api_routes.dart';
 import 'package:user_voting_app/feature/voting/models/candidate.dart';
 
@@ -26,6 +27,10 @@ class VotingRepository {
   Future<void> submitVote(Candidate candidate) async {
     try {
       await _client.post(ApiUrl.vote);
+      AnalyticsHelper().logEvent('usr_voted', {
+        'user_voted': true,
+        //todo add voter id
+      });
     } catch (e) {
       log(e.toString());
     }
