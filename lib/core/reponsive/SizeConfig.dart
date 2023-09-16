@@ -44,3 +44,10 @@ class SizeConfig {
     widthMultiplier = 1.w;
   }
 }
+
+extension SizeExtension on num {
+  double get widthMultiplier => this * SizeConfig.widthMultiplier;
+  double get heightMultiplier => this * SizeConfig.heightMultiplier;
+  double get imageSizeMultiplier => this * SizeConfig.imageSizeMultiplier;
+  double get textMultiplier => this * SizeConfig.textMultiplier;
+}

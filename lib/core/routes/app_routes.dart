@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_voting_app/feature/auth/screen/home_screen.dart';
 import 'package:user_voting_app/feature/auth/screen/login_screen.dart';
 import 'package:user_voting_app/main.dart';
 
@@ -17,14 +18,14 @@ class GenerateRoute {
         builder: (
           BuildContext context,
         ) =>
-            LoginScreen(),
+            const LoginScreen(),
       );
     }
     return MaterialPageRoute(
       builder: (
         BuildContext context,
       ) =>
-          MyHomePage(title: ""),
+          const HomeScreen(),
     );
   }
 }
