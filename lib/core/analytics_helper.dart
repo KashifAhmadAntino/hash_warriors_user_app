@@ -10,10 +10,10 @@ class AnalyticsHelper {
       temp[key] = value.toString();
     });
     params?.addAll({
-      "postalCode": UserLocation().userLocation?.postalCode.toString(),
-      "city": UserLocation().userLocation?.administrativeArea,
-      "area": UserLocation().userLocation?.name,
-      "locality": UserLocation().userLocation?.locality
+      "postalCode": UserLocation().userLocation?.postalCode?.toString() ?? '',
+      "city": UserLocation().userLocation?.administrativeArea.toString() ?? '',
+      "area": UserLocation().userLocation?.name ?? '',
+      "locality": UserLocation().userLocation?.locality ?? ''
     });
     try {
       await analytics.logEvent(name: '', parameters: params);

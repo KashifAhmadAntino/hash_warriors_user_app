@@ -5,8 +5,7 @@ class ApiUrl {
 
   static String sendOtp = '$localUrl/user/send-otp';
   static String verifyOtp = '$localUrl/user/validate-otp';
-  static String getCandidates =
-      '$localUrl/party?userId=650593b412171efe27e39135';
+  static String getCandidates = '$localUrl/party';
   static String vote = '$localUrl/vote';
 
   // static String liveBaseURL = 'https://db79-122-161-92-249.in.ngrok.io';

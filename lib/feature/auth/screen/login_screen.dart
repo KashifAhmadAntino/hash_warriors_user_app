@@ -242,7 +242,6 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   bool _voteIdValidation(String id) {
-    return true;
     final RegExp pattern = RegExp(r'^[A-Z]{3}\d+$');
 
     // Use the RegExp pattern to match the input

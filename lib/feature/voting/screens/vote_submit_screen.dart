@@ -51,12 +51,13 @@ class _VoteSubmitScreenState extends State<VoteSubmitScreen>
           ),
           Draggable(
             onDragUpdate: (data) {
-              if (data.localPosition.dy >= 466 * SizeConfig.heightMultiplier! &&
+              if (data.localPosition.dy >= 466 * SizeConfig.heightMultiplier &&
                   isDropped == false) {
-                _votingController.submitVote(widget.parms.candidate);
                 setState(() {
                   isDropped = true;
                 });
+                _votingController.submitVote(widget.parms.candidate);
+
                 _celebrateAnimationController
                     .forward()
                     .then((_) => AwesomeDialog(

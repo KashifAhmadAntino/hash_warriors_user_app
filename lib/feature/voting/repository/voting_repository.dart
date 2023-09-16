@@ -1,19 +1,23 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:user_voting_app/core/analytics_helper.dart';
 import 'package:user_voting_app/core/routes/api_routes.dart';
+import 'package:user_voting_app/feature/auth/controller/login_controller.dart';
 import 'package:user_voting_app/feature/voting/models/candidate.dart';
 
 class VotingRepository {
   final Dio _client;
 
   VotingRepository(this._client);
+  LoginController loginController = Get.find();
 
   Future<List<Candidate>?> getAllCandidates() async {
     try {
-      final response = await _client.get(ApiUrl.getCandidates);
+      final response = await _client
+          .get('${ApiUrl.getCandidates}?userId=${loginController.userId}');
       final List list = response.data['data'];
       final List<Candidate> candidates =
           list.map((e) => Candidate.fromMap(e)).toList();
