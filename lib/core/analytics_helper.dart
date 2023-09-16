@@ -6,6 +6,8 @@ class AnalyticsHelper {
 
   void logEvent(String eventName, Map<String, dynamic>? params) async {
     Map<String, dynamic>? temp = {};
+    //
+
     params?.forEach((key, value) {
       temp[key] = value.toString();
     });
