@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -79,6 +80,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         title: 'Enter you Voter ID',
                         dynamicKeyboardText: 'GDN0453323',
                         hint: 'GDN0453323',
+                        inputFormatters: [LengthLimitingTextInputFormatter(10)],
+                        suffix: Padding(
+                            padding: EdgeInsets.only(right: 10),
+                            child: Icon(Icons.check_circle)),
                       ),
                       SizedBox(
                         height: 16.heightMultiplier,

@@ -127,7 +127,7 @@ class _VotingScreenState extends State<VotingScreen> {
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 8.heightMultiplier),
                     child: Text(
-                      "Submit",
+                      "Next",
                       style: AppTextStyle.f18w400Jakartaneutral02,
                     ),
                   )),

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:user_voting_app/core/constants/color_palette.dart';
 import 'package:user_voting_app/core/reponsive/SizeConfig.dart';
 import 'package:user_voting_app/core/routes/app_routes.dart';
+import 'package:user_voting_app/core/utilites/utility.dart';
 import 'package:user_voting_app/feature/auth/screen/home_screen.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
                   navigatorKey: navigatorKey,
                   theme: ThemeData(
                     fontFamily: 'Mulish',
-                    primarySwatch: Colors.deepPurple,
+                    primarySwatch: createMaterialColor(Color(0xFF128807)),
                     // For changing color avatar background color in whole app
                     primaryColorDark: AppColors.kgrey,
                   ),

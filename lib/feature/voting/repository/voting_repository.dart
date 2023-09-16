@@ -13,7 +13,7 @@ class VotingRepository {
   Future<List<Candidate>?> getAllCandidates() async {
     try {
       final response = await _client.get(ApiUrl.getCandidates);
-      final List list = response.data;
+      final List list = response.data['data'];
       final List<Candidate> candidates =
           list.map((e) => Candidate.fromMap(e)).toList();
       return candidates;

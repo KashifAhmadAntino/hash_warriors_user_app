@@ -13,9 +13,9 @@ class Candidate {
 
   factory Candidate.fromMap(Map<String, dynamic> map) {
     return Candidate(
-      name: map['name'] as String,
-      partyName: map['partyName'] as String,
-      imageUrl: map['imageUrl'] as String,
+      name: map['candidate'] != null ? map['candidate']['name'] as String : "",
+      partyName: map['name'] as String,
+      imageUrl: map['symbol'] as String,
     );
   }
 
