@@ -28,10 +28,10 @@ abstract class AppTextStyle {
   );
 
   static TextStyle font12w500 = TextStyle(
-      fontSize: 12 * SizeConfig.textMultiplier!, fontWeight: FontWeight.w500);
+      fontSize: 12 * SizeConfig.textMultiplier, fontWeight: FontWeight.w500);
 
   static TextStyle font22w700 = TextStyle(
-    fontSize: 22 * SizeConfig.textMultiplier!,
+    fontSize: 22 * SizeConfig.textMultiplier,
     fontWeight: FontWeight.w700,
     fontFamily: 'Plus Jakarta Sans',
   );

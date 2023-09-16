@@ -3,6 +3,8 @@ class ApiUrl {
 
   static String localUrl = 'https://3f4a-49-249-44-114.ngrok-free.app';
 
+  static String sendOtp = '$localUrl/user/send-otp';
+  static String verifyOtp = '$localUrl/user/validate-otp';
   static String getCandidates =
       '$localUrl/party?userId=650593b412171efe27e39135';
   static String vote = '$localUrl/vote';

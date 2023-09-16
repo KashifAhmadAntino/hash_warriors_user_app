@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:user_voting_app/core/reponsive/SizeConfig.dart';
+import 'package:user_voting_app/core/routes/app_routes.dart';
 import 'package:user_voting_app/core/universal_widgets/custom_pin_input_with_label.dart';
+import 'package:user_voting_app/feature/auth/controller/login_controller.dart';
+
+import '../../../core/image_loader.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({Key? key}) : super(key: key);
@@ -10,6 +15,7 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
+  final _loginController = Get.find<LoginController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,8 +55,9 @@ class _OtpScreenState extends State<OtpScreen> {
                   height: 30 * SizeConfig.heightMultiplier,
                 ),
                 CustomPinInputWithLabel(
-                  pinController: TextEditingController(),
+                  pinController: _loginController.otpController,
                   length: 6,
+                  isPinInputCenter: true,
                 ),
                 SizedBox(
                   height: 60 * SizeConfig.heightMultiplier,
@@ -67,7 +74,9 @@ class _OtpScreenState extends State<OtpScreen> {
                 //   ),
                 // ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    _loginController.verifyOtp(context);
+                  },
                   child: Container(
                     width: double.infinity,
                     height: 56,
